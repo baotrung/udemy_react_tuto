@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import classes from './App.css'
 import Person from './Person/Person'
 
 class App extends Component {
@@ -41,19 +41,14 @@ class App extends Component {
   }
 
   render() {
-    let style = {
-      backgroundColor: 'green',
-      width: '200px',
-      height: '50px',
-      fontSize: '20px'
-    }
-
 
     let btn_label = 'view'
     let persons = null
+    let btnToggleCls = classes.ToggleBtn_A
+
     if(this.state.viewPersons){
       btn_label = 'hide'
-      style.backgroundColor = 'red'
+      btnToggleCls = classes.ToggleBtn_B
       persons = (
         this.state.persons.map((person) => {
           return <Person
@@ -67,10 +62,10 @@ class App extends Component {
       )
     }
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>ReactJs Tutorial</h1>
         <p>a React beginner who wanna be a React expert</p>
-        <button style={style} onClick={this.toggleViewPersonsHandler}>{btn_label}</button>
+        <button className={btnToggleCls} onClick={this.toggleViewPersonsHandler}>{btn_label}</button>
         {persons}
       </div>
     );

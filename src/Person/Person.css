@@ -1,6 +1,13 @@
-.person{
+.Person{
+  text-align: center;
   background: #eee;
   width: 60%;
   margin: 16px auto;
   padding: 16px 0;
+}
+
+@media (min-width: 500px){
+  .person{
+    width:450px;
+  }
 }
