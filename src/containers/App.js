@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classes from './App.css'
-import Person from './Person/Person'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
   state={
@@ -50,22 +51,24 @@ class App extends Component {
       btn_label = 'hide'
       btnToggleCls = classes.ToggleBtn_B
       persons = (
-        this.state.persons.map((person) => {
-          return <Person
-                    key={person.id}
-                    name={person.name}
-                    team={person.team}
-                    inputOnChangeHandler={(evt) => this.changeTeamHandler(evt,person.id)}
-                    deleteHandler={this.delPersHandler.bind(this,person.id)}
-                  />
-        })
+        <div>
+          <Persons 
+            persons={this.state.persons} 
+            inputChanged={this.changeTeamHandler}
+            btnDelCliked={this.delPersHandler}
+          />
+        </div>
       )
     }
+
+    const cockpit = <Cockpit 
+                      btn_label={btn_label}
+                      btnToggleCls={btnToggleCls}
+                      toggleViewPersonsHandler={this.toggleViewPersonsHandler}
+                    />
     return (
       <div className={classes.App}>
-        <h1>ReactJs Tutorial</h1>
-        <p>a React beginner who wanna be a React expert</p>
-        <button className={btnToggleCls} onClick={this.toggleViewPersonsHandler}>{btn_label}</button>
+        {cockpit}
         {persons}
       </div>
     );
